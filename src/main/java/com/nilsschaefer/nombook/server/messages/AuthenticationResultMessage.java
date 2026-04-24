@@ -13,16 +13,17 @@ public class AuthenticationResultMessage extends Message {
     private final String groupUuid;
     private final String cookbookUuid;
     private final List<String> groupMemberUuids;
+    private final String email;
 
     public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason) {
-        this(from, successful, reason, null, null, null, null, null, null);
+        this(from, successful, reason, null, null, null, null, null, null, null);
     }
 
     public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName) {
-        this(from, successful, reason, username, groupName, null, null, null, null);
+        this(from, successful, reason, username, groupName, null, null, null, null, null);
     }
 
-    public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName, String userUuid, String groupUuid, String cookbookUuid, List<String> groupMemberUuids) {
+    public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName, String userUuid, String groupUuid, String cookbookUuid, List<String> groupMemberUuids, String email) {
         super(from, MessageType.AUTHENTICATION_RESULT);
         this.successful = successful;
         this.reason = reason;
@@ -32,6 +33,7 @@ public class AuthenticationResultMessage extends Message {
         this.groupUuid = groupUuid;
         this.cookbookUuid = cookbookUuid;
         this.groupMemberUuids = groupMemberUuids;
+        this.email = email;
     }
     public List<String> getGroupMemberUuids() {
         return groupMemberUuids;
@@ -67,5 +69,9 @@ public class AuthenticationResultMessage extends Message {
 
     public String getCookbookUuid() {
         return cookbookUuid;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
