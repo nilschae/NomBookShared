@@ -1,23 +1,17 @@
 package com.nilsschaefer.nombook.server.messages;
 
 import java.util.List;
-import java.util.UUID;
 
 public class GroupMembersResultMessage extends Message implements java.io.Serializable {
     private static final long serialVersionUID = -4380190844436983814L;
-    private final List<UUID> memberUuids;
+    private final List<MemberInfo> members;
 
-    public GroupMembersResultMessage(String from, List<UUID> memberUuids) {
+    public GroupMembersResultMessage(String from, List<MemberInfo> members) {
         super(from, MessageType.GROUP_MEMBERS_RESULT);
-        this.memberUuids = memberUuids;
+        this.members = members;
     }
 
-    public List<UUID> getMemberUuids() {
-        return memberUuids;
+    public List<MemberInfo> getMembers() {
+        return members;
     }
-
-    // For compatibility with reflection-based code expecting getUserUuids()
-    public List<UUID> getUserUuids() {
-        return memberUuids;
-    }
-}
+}
