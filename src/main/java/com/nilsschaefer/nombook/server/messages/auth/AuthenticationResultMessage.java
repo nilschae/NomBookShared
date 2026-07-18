@@ -18,15 +18,20 @@ public class AuthenticationResultMessage extends Message {
     private final List<String> groupMemberUuids;
     private final String email;
 
+    private final String userRank;
+    private final int tokensBalance;
+    private final List<String> purchasedProductIds;
+    private final String activeTheme;
+
     public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason) {
-        this(from, successful, reason, null, null, null, null, null, null, null);
+        this(from, successful, reason, null, null, null, null, null, null, null, "USER", 0, null, "STANDARD");
     }
 
     public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName) {
-        this(from, successful, reason, username, groupName, null, null, null, null, null);
+        this(from, successful, reason, username, groupName, null, null, null, null, null, "USER", 0, null, "STANDARD");
     }
 
-    public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName, String userUuid, String groupUuid, String cookbookUuid, List<String> groupMemberUuids, String email) {
+    public AuthenticationResultMessage(String from, boolean successful, AuthenticationResultReason reason, String username, String groupName, String userUuid, String groupUuid, String cookbookUuid, List<String> groupMemberUuids, String email, String userRank, int tokensBalance, List<String> purchasedProductIds, String activeTheme) {
         super(from, MessageType.AUTHENTICATION_RESULT);
         this.successful = successful;
         this.reason = reason;
@@ -37,7 +42,28 @@ public class AuthenticationResultMessage extends Message {
         this.cookbookUuid = cookbookUuid;
         this.groupMemberUuids = groupMemberUuids;
         this.email = email;
+        this.userRank = userRank;
+        this.tokensBalance = tokensBalance;
+        this.purchasedProductIds = purchasedProductIds;
+        this.activeTheme = activeTheme;
     }
+    
+    public String getUserRank() {
+        return userRank != null ? userRank : "USER";
+    }
+
+    public int getTokensBalance() {
+        return tokensBalance;
+    }
+
+    public List<String> getPurchasedProductIds() {
+        return purchasedProductIds;
+    }
+
+    public String getActiveTheme() {
+        return activeTheme != null ? activeTheme : "STANDARD";
+    }
+
     public List<String> getGroupMemberUuids() {
         return groupMemberUuids;
     }

@@ -10,3 +10,7 @@ java {
 dependencies {
     // Shared messages currently have no external dependencies.
 }
+
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+}
