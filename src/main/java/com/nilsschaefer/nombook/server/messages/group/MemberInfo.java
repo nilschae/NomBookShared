@@ -12,17 +12,23 @@ public class MemberInfo implements Serializable {
     private final String status;
     private final long lastSeen; // timestamp in millis
     private final GroupRole role;
+    private final boolean isSupporter;
 
     public MemberInfo(UUID uuid, String username, String status, long lastSeen) {
-        this(uuid, username, status, lastSeen, GroupRole.USER);
+        this(uuid, username, status, lastSeen, GroupRole.USER, false);
     }
 
     public MemberInfo(UUID uuid, String username, String status, long lastSeen, GroupRole role) {
+        this(uuid, username, status, lastSeen, role, false);
+    }
+
+    public MemberInfo(UUID uuid, String username, String status, long lastSeen, GroupRole role, boolean isSupporter) {
         this.uuid = uuid;
         this.username = username;
         this.status = status;
         this.lastSeen = lastSeen;
         this.role = role;
+        this.isSupporter = isSupporter;
     }
 
     public UUID getUuid() { return uuid; }
@@ -30,4 +36,5 @@ public class MemberInfo implements Serializable {
     public String getStatus() { return status; }
     public long getLastSeen() { return lastSeen; }
     public GroupRole getRole() { return role; }
+    public boolean isSupporter() { return isSupporter; }
 }
