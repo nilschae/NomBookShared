@@ -9,12 +9,18 @@ public class CreateCookbookResultMessage extends Message {
     private final boolean success;
     private final String cookbookId;
     private final String cookbookName;
+    private final String reason;
 
     public CreateCookbookResultMessage(String from, boolean success, String cookbookId, String cookbookName) {
+        this(from, success, cookbookId, cookbookName, null);
+    }
+
+    public CreateCookbookResultMessage(String from, boolean success, String cookbookId, String cookbookName, String reason) {
         super(from, MessageType.CREATE_COOKBOOK_RESULT);
         this.success = success;
         this.cookbookId = cookbookId;
         this.cookbookName = cookbookName;
+        this.reason = reason;
     }
 
     public boolean isSuccess() {
@@ -27,5 +33,9 @@ public class CreateCookbookResultMessage extends Message {
 
     public String getCookbookName() {
         return cookbookName;
+    }
+
+    public String getReason() {
+        return reason;
     }
 }
